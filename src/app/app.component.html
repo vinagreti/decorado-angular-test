@@ -1,9 +1,9 @@
 <md-toolbar color="primary">
   <a routerLink="/">UsersApp</a>
   <span class="toolbar-spacer"></span>
-  <button md-button *ngIf="userService.isLoggedIn()" type="button" routerLink="/user">Usuarios</button>
-  <button md-button *ngIf="!userService.isLoggedIn()" type="button" routerLink="/user/login">Entrar</button>
-  <button md-button *ngIf="userService.isLoggedIn()" type="button" (click)="userService.logout()">Sair</button>
+  <button md-button *ngIf="userService.isLoggedIn()" type="button" routerLink="/user">Users</button>
+  <button md-button *ngIf="!userService.isLoggedIn()" type="button" routerLink="/user/login">Sign in</button>
+  <button md-button *ngIf="userService.isLoggedIn()" type="button" (click)="userService.logout()">Sign out</button>
 </md-toolbar>
 
 <div class="main-content">

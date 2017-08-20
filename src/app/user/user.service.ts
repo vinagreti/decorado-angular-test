@@ -6,14 +6,17 @@
 * As this demo has no back-end, we are mocking a DB in LocalStorage
 * This service simulates an Ajax API call retunring promises with data from LocalStorage
 * As this demo has no back-end, the credentials check is done on client without security concerns
-* As this demo has no back-end, we to ensure the presence of the default admin user
+* As this demo has no back-end, we ensure the presence of the default admin user
+* API Tokens are not used in this demo, the authentication was meanted to simulate the flow not the security
+* Password RESET and CHANGE were not implemented as they were not required in the test requirements
 */
 
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 import { User } from './user.model';
+import { ConfirmationDialogService } from './../shared/helpers/confirmation-dialog/';
 import { JsonStorageService } from './../json-storage'
 
 const defaultAdminUser = new User({ id: '1', name: 'Admin', isAdmin: true, username: 'admin', password: 123 });
@@ -33,6 +36,7 @@ export class UserService {
     user: BehaviorSubject<User>;
 
     constructor(
+        private confirmationDialogService: ConfirmationDialogService,
         private jsonStorageService: JsonStorageService,
         private router: Router,
     ) {
@@ -108,9 +112,16 @@ export class UserService {
     }
 
     delete = (user: User) => {
-        let userPosition = this._users.indexOf(user);
-        this._users.splice(userPosition, 1);
-        this.users.next(this._users);
+        this.confirmationDialogService
+        .confirm(`Remove user ${user.name}?`)
+        .then((confirmed) => {
+            if(confirmed){
+                let userPosition = this._users.indexOf(user);
+                this._users.splice(userPosition, 1);
+                this.users.next(this._users);
+                this.router.navigate(['/user']);
+            }
+        });
     }
 
     get = (id): User => {

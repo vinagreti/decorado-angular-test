@@ -4,9 +4,9 @@ import { MdButtonModule, MdIconModule, MdSidenavModule, MdToolbarModule } from '
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 // Global Components
 import { AppComponent } from './app.component';
+
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './static-pages/page-not-found.component';
 
@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './user';
 
 // Globla Modules
+import { ConfirmationDialogModule } from './shared/helpers/confirmation-dialog';
 import { GuardModule } from './shared/guard';
 import { JsonStorageModule } from './json-storage/json-storage.module';
 
@@ -33,9 +34,10 @@ import 'hammerjs';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ConfirmationDialogModule,
     GuardModule,
     JsonStorageModule,
-	  HttpModule,
+	HttpModule,
     MdButtonModule,
     MdIconModule,
     MdSidenavModule,

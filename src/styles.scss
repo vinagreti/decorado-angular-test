@@ -38,6 +38,13 @@ input:-webkit-autofill {
 }
 
 /*
+* Material Overlay Pan fix mobile dialog positioning
+*/
+.cdk-overlay-pane{
+  width: auto !important; //fix dialog position on mobile - should test in future material versions
+}
+
+/*
 * Material Icon
 */
 @font-face {
