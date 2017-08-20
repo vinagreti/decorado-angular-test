@@ -1,5 +1,7 @@
-<div class="user-card">
-	<a class="user-name" [routerLink]="[user.id]">{{user.name}}</a>
-	<p class="user-is-admin"><b>ID:</b> {{user.id}}</p>
-	<p class="user-is-admin"><b>Admin:</b> {{user.isAdmin ? 'Yes' : 'No'}}</p>
+<div class="user-card" [routerLink]="[user.id]">
+	<a class="user-name">{{user.name}}</a>
+	<div class="spacer"></div>
+	<md-chip-list>
+	  <md-chip color="accent" [selected]="user.isAdmin" (click)="toggleAdmin($event, user)">Admin</md-chip>
+	</md-chip-list>
 </div>

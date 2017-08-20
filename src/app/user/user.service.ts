@@ -148,6 +148,13 @@ export class UserService {
         return _user;
     }
 
+    toggleAdmin = (user: User): User => {
+        let _user = this.get(user.id);
+        _user.isAdmin = !user.isAdmin;
+        this.users.next(this._users);
+        return _user;
+    }
+
     /*
     * AUTH OPERATIONS
     */

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MdButtonModule, MdCheckboxModule, MdIconModule, MdInputModule } from '@angular/material';
+import { MdButtonModule, MdCheckboxModule, MdChipsModule, MdIconModule, MdInputModule } from '@angular/material';
 
 import { ConfirmationDialogModule } from './../shared/helpers/confirmation-dialog';
 import { UserLoginComponent } from './user-login/user-login.component';
@@ -19,6 +19,7 @@ import { UserFormComponent } from './user-form/user-form.component';
         ConfirmationDialogModule,
         MdButtonModule,
         MdCheckboxModule,
+        MdChipsModule,
         MdIconModule,
         MdInputModule,
         ReactiveFormsModule,

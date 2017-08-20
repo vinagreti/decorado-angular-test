@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { User, UserService } from './../';
 
 @Component({
@@ -6,7 +6,7 @@ import { User, UserService } from './../';
   templateUrl: './user-card.component.html',
   styleUrls: ['./user-card.component.scss']
 })
-export class UserCardComponent implements OnInit {
+export class UserCardComponent {
 
     @Input() user: User;
 
@@ -14,8 +14,9 @@ export class UserCardComponent implements OnInit {
         public userService: UserService
     ) { }
 
-    ngOnInit() {
-
+    toggleAdmin($event, user){
+        $event.stopPropagation();
+        this.userService.toggleAdmin(user);
     }
 
 }

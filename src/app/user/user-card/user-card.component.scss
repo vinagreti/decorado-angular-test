@@ -1,14 +1,15 @@
 .user-card{
 	border: 1px solid;
-	margin-bottom: 24px;
-	padding: 0 16px;
+	margin-bottom: 16px;
+	display: flex;
+	padding: 10px;
 
 	.user-name{
 		font-size: 24px;
 		font-weight: bold;
 	}
 
-	.user-is-admin{
-
+	.spacer{
+	  flex: 1 1 auto;
 	}
 }

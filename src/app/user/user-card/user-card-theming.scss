@@ -1,9 +1,9 @@
 @mixin user-card-theme($theme) {
 	.user-card{
-		border-color: mat-color(map-get($theme, warn));
+		background-color: mat-color(map-get($theme, primary));
 
 		.user-name{
-			color: mat-color(map-get($theme, primary));
-		}	
+			color: #fff;
+		}
 	}
 }
