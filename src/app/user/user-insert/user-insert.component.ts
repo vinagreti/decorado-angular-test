@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { UserService } from './../user.service';
 import { User } from './../user.model';
 
@@ -9,15 +11,15 @@ import { User } from './../user.model';
 })
 export class UserInsertComponent implements OnInit {
 
-  constructor(
-  	private userService: UserService
-  ) { }
+    constructor(
+        private router: Router,
+    	private userService: UserService
+    ) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  insert(){
-  	this.userService.create(new User({ id: '5', name: 'Novo', isAdmin: true }));
-  }
-
+    onSave(user){
+        this.router.navigate(['user'])
+    }
 }

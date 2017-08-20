@@ -1,0 +1,23 @@
+<form role="form" (submit)="save()" [formGroup]="userForm">
+
+    <md-input-container>
+        <input mdInput type="text" name="name" formControlName="name" placeholder="name" autofocus="true" tabindex="1"/>
+    </md-input-container>
+
+    <div *ngIf="!user.id">
+        <md-input-container>
+            <input mdInput type="text" name="name" formControlName="username" placeholder="username" autofocus="true" tabindex="1"/>
+        </md-input-container>
+
+        <md-input-container>
+            <input mdInput type="text" name="name" formControlName="password" placeholder="password" autofocus="true" tabindex="1"/>
+        </md-input-container>
+    </div>
+
+    <div class="checkbox-container">
+        <md-checkbox name="isAdmin" formControlName="isAdmin">Admin</md-checkbox>
+    </div>
+
+    <button md-raised-button type="submit" color="primary">Save</button>
+
+</form>

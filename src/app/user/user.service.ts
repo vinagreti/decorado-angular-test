@@ -48,7 +48,7 @@ export class UserService {
 
     /* As this demo has no back-end, the credentials check is done on client without security concerns  */
     private authenticate(loginData: LoginData): User {
-        let user: User = this.get(loginData.username);
+        let user: User = this.getByUsername(loginData.username);
 
         if(user){
             return user.password == loginData.password ? new User(user) : undefined;
@@ -59,7 +59,7 @@ export class UserService {
 
     /* As this demo has no back-end, we ensure the presence of the default admin user  */
     private ensureDefaultAdminUser = () => {
-        let user = this.get(defaultAdminUser.username);
+        let user = this.getByUsername(defaultAdminUser.username);
         if(!user){
             this._users.push(defaultAdminUser)
         } else {
@@ -96,13 +96,15 @@ export class UserService {
         this.user = new BehaviorSubject<User>(user);
         this.user.subscribe(this.persistUser);
     }
-    
+
     /*
     * CRUD OPERATIONS
     */
-    create = (user: User) => {
+    create = (user: User): User => {
+        user.id = Date.now();
         this._users.push(user)
         this.users.next(this._users);
+        return user;
     }
 
     delete = (user: User) => {
@@ -111,14 +113,28 @@ export class UserService {
         this.users.next(this._users);
     }
 
-    get = (username): User => {
-        return this._users.find((user: any) => user.username === username);
+    get = (id): User => {
+        return this._users.find((user: User) => user.id == id);
     }
 
-    update = (user: User) => {
-        let _user = this.get(user.username);
-        _user = user;
+    getByUsername = (username): User => {
+        return this._users.find((user: User) => user.username == username);
+    }
+
+    save = (user: User): User => {
+        if(user.id){
+            return this.update(user);
+        } else {
+            return this.create(user);
+        }
+    }
+
+    update = (user: User): User => {
+        let _user = this.get(user.id);
+        _user.name = user.name;
+        _user.isAdmin = user.isAdmin;
         this.users.next(this._users);
+        return _user;
     }
 
     /*

@@ -1,1 +1,10 @@
-<a routerLink="/user">Return</a>
+<div class="wide-central-shape">
+    <h1>
+		<a md-fab color="primary" type="button" routerLink="/user">
+			<md-icon class="example-icon">keyboard_return</md-icon>
+		</a>
+		Edit user
+	</h1>
+    <hr />
+    <user-form [user]="user" (insert)="onSave()"></user-form>
+</div>

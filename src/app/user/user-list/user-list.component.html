@@ -1,11 +1,14 @@
-<h1>Users</h1>
+<div class="wide-central-shape">
+	<h1>
+		<a md-fab color="primary" type="button" routerLink="/user/insert">
+			<md-icon class="example-icon">add</md-icon>
+		</a>
+		Users
+	</h1>
 
-<a md-icon-button color="primary" type="button" routerLink="/user/insert">
-	<md-icon class="example-icon">plus</md-icon>
-</a>
+	<hr />
 
-<hr />
-
-<ul *ngFor="let user of (userService.users | async)">
-	<li><user-card [user]="user"></user-card></li>
-</ul>
+	<ul *ngFor="let user of (userService.users | async)">
+		<li><user-card [user]="user"></user-card></li>
+	</ul>
+</div>
