@@ -1,0 +1,17 @@
+<div class="login-component-wrapper">
+    <h1>Sign in</h1>
+
+    <form class="login-form" role="form" (submit)="login()" [formGroup]="loginForm">
+
+        <md-input-container>
+            <input mdInput type="text" name="username" formControlName="username" placeholder="username" />
+        </md-input-container>
+
+        <md-input-container>
+            <input mdInput type="password" name="password" formControlName="password" placeholder="password" />
+        </md-input-container>
+
+        <button md-raised-button type="submit" color="primary">Sign-in</button>
+
+    </form>
+</div>

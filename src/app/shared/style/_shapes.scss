@@ -1,0 +1,41 @@
+/* Static */
+@mixin static-small-central-shape{
+    width: 320px;
+    margin: auto;
+    padding: 16px;
+}
+
+@mixin static-medium-central-shape{
+    width: 600px;
+    margin: auto;
+    padding: 16px;
+}
+
+@mixin static-big-central-shape{
+    width: 800px;
+    margin: auto;
+    padding: 16px;
+}
+
+/* Responsive */
+@mixin small-central-shape{
+    width: 40%;
+    margin: auto;
+    padding: 16px;
+}
+
+@mixin medium-central-shape{
+    width: 60%;
+    margin: auto;
+    padding: 16px;
+}
+
+@mixin big-central-shape{
+    width: 80%;
+    margin: auto;
+    padding: 16px;
+}
+
+@mixin wide-central-shape{
+    padding: 16px;
+}

@@ -1,0 +1,9 @@
+<h1>Users</h1>
+
+<a routerLink="/user/insert">Add new user</a>
+
+<ul *ngFor="let user of users | async">
+	<li><user-card [user]="user"></user-card></li>
+</ul>
+
+<button md-raised-button color="primary" type="button">Botãozão</button>

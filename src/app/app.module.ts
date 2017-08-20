@@ -1,16 +1,51 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MdButtonModule, MdIconModule, MdSidenavModule, MdToolbarModule } from '@angular/material';
+import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+// Global Components
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './static-pages/page-not-found.component';
+
+// Routes
+import { AppRoutingModule } from './app-routing.module';
+
+// Global Services
+import { UserService } from './user';
+
+// Globla Modules
+import { GuardModule } from './shared/guard';
+import { JsonStorageModule } from './json-storage/json-storage.module';
+
+// Globals
+import 'hammerjs';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    PageNotFoundComponent,
   ],
   imports: [
-    BrowserModule
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    GuardModule,
+    JsonStorageModule,
+	  HttpModule,
+    MdButtonModule,
+    MdIconModule,
+    MdSidenavModule,
+    MdToolbarModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    UserService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

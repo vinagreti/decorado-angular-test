@@ -1,0 +1,5 @@
+@import './../shared/style/shapes';
+
+.home-wrapper{
+    @include wide-central-shape;
+}
