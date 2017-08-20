@@ -96,6 +96,7 @@ export class UserService {
         this.user = new BehaviorSubject<User>(user);
         this.user.subscribe(this.persistUser);
     }
+    
     /*
     * CRUD OPERATIONS
     */
@@ -105,7 +106,8 @@ export class UserService {
     }
 
     delete = (user: User) => {
-        this._users.push(user)
+        let userPosition = this._users.indexOf(user);
+        this._users.splice(userPosition, 1);
         this.users.next(this._users);
     }
 
@@ -114,7 +116,8 @@ export class UserService {
     }
 
     update = (user: User) => {
-        this._users.push(user)
+        let _user = this.get(user.username);
+        _user = user;
         this.users.next(this._users);
     }
 

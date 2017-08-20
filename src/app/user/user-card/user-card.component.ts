@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from './../user.model';
-
+import { User, UserService } from './../';
 
 @Component({
   selector: 'user-card',
@@ -11,10 +10,12 @@ export class UserCardComponent implements OnInit {
 
     @Input() user: User;
 
-    constructor() { }
+    constructor(
+        public userService: UserService
+    ) { }
 
     ngOnInit() {
-        
+
     }
 
 }
