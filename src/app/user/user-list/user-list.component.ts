@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { UserService } from './../user.service';
 import { User } from './../user.model';
 
@@ -10,6 +10,7 @@ import { User } from './../user.model';
 export class UserListComponent {
 
     showFilter: boolean;
+    @ViewChild('searchStringField') searchStringField: ElementRef;
 
     constructor(
         private userService: UserService
@@ -17,6 +18,12 @@ export class UserListComponent {
 
     toggleFilter = () => {
         this.showFilter = !this.showFilter;
+
+        setTimeout(() => {
+            if(this.showFilter){
+                this.searchStringField.nativeElement.focus();
+            }
+        }, 1)
     }
 
 }

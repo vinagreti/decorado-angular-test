@@ -8,8 +8,14 @@ export class AdminGuardService implements CanActivate {
     constructor(private userService: UserService, private router: Router) { console.log('AdminGuardService STARTED') }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this.userService.isAdmin()) {
+            this.userService.user.subscribe((user) => {
+                if (!this.userService.isAdmin()) {
+                    this.router.navigate(['/']);
+                }
+            });
             return true;
         } else {
+            this.router.navigate(['/']);
             return false;
         }
     }
@@ -20,7 +26,17 @@ export class AdminGuardService implements CanActivate {
 export class LoggedGuardService implements CanActivate {
     constructor(private userService: UserService, private router: Router) { console.log('LoggedGuardService STARTED') }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return this.userService.isLoggedIn();
+        if (this.userService.isLoggedIn()) {
+            this.userService.user.subscribe((user) => {
+                if (!this.userService.isLoggedIn()) {
+                    this.router.navigate(['/']);
+                }
+            });
+            return true;
+        } else {
+            this.router.navigate(['/']);
+            return false;
+        }
     }
 }
 
@@ -29,6 +45,16 @@ export class LoggedGuardService implements CanActivate {
 export class PublicGuardService implements CanActivate {
     constructor(private userService: UserService, private router: Router) { console.log('PublicGuardService STARTED') }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return !this.userService.isLoggedIn();
+        if (!this.userService.isLoggedIn()) {
+            this.userService.user.subscribe((user) => {
+                if (this.userService.isLoggedIn()) {
+                    this.router.navigate(['/']);
+                }
+            });
+            return true;
+        } else {
+            this.router.navigate(['/']);
+            return false;
+        }
     }
 }

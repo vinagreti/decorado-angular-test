@@ -115,13 +115,10 @@ export class UserService {
     * Only forms are not using async data so we can ensure form data is not replaced when data changes
     */
     private watchLocalStorage(){
-        console.log("watchLocalStorage")
         setInterval(() => {
-            console.log("watchLocalStorage timeout")
             this.getUsersFromDb()
             .then((users) => {
                 if(JSON.stringify(users) != JSON.stringify(this._users)){
-                    console.log("watchLocalStorage Users timeout mudou")
                     this.users.next(users);
                 }
             });
@@ -133,7 +130,7 @@ export class UserService {
                     this.user.next(user);
                 }
             });
-        }, 1000)
+        }, 2000)
     }
 
     /*

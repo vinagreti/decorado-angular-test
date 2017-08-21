@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MdButtonModule, MdCheckboxModule, MdChipsModule, MdIconModule, MdInputModule } from '@angular/material';
 
 import { ConfirmationDialogModule } from './../shared/services/confirmation-dialog';
@@ -12,11 +12,14 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserCardComponent } from './user-card/user-card.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { ValidatorModule } from './../shared/services/validator';
+import { CustomPipesModule } from './../shared/pipes';
 
 @NgModule({
     imports: [
         CommonModule,
         ConfirmationDialogModule,
+        CustomPipesModule,
+        FormsModule,
         MdButtonModule,
         MdCheckboxModule,
         MdChipsModule,
