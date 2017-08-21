@@ -60,7 +60,14 @@ export class UserFormComponent implements OnInit {
             user.password = this.userForm.controls.password.value;
             user.isAdmin = this.userForm.controls.isAdmin.value;
 
+            let userWithSameUsername = this.userService.getByUsername(user.username);
+
+            if(userWithSameUsername){
+                return this.userForm.controls.username.setErrors({notUnique: true});
+            }
+
             this.user = this.userService.save(user);
+
             this.insert.emit(user);
         }
     }

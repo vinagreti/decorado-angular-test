@@ -2,7 +2,7 @@
 
     <md-input-container>
         <input mdInput type="text" name="name" formControlName="name" placeholder="name" autofocus="true" tabindex="1"/>
-        <md-hint *ngIf="userForm.controls.name.touched && userForm.controls.name.errors">
+        <md-hint *ngIf="userForm.controls.name.touched && userForm.controls.name.errors?.required">
                 Please, fill the Name field
         </md-hint>
     </md-input-container>
@@ -14,14 +14,17 @@
     <div *ngIf="!user.id">
         <md-input-container>
             <input mdInput type="text" name="username" formControlName="username" placeholder="username" autofocus="true" tabindex="1"/>
-            <md-hint *ngIf="userForm.controls.username.touched && userForm.controls.username.errors">
+            <md-hint *ngIf="userForm.controls.username.touched && userForm.controls.username.errors?.required">
                     Please, fill the Username field
+            </md-hint>
+            <md-hint *ngIf="userForm.controls.username.touched && userForm.controls.username.errors?.notUnique">
+                    This username is no available. Choose another username.
             </md-hint>
         </md-input-container>
 
         <md-input-container>
             <input mdInput [type]="userForm.controls.showPassword.value ? 'text' : 'password'" name="password" formControlName="password" placeholder="password" autofocus="true" tabindex="1"/>
-            <md-hint *ngIf="userForm.controls.password.touched && userForm.controls.password.errors">
+            <md-hint *ngIf="userForm.controls.password.touched && userForm.controls.password.errors?.required">
                     Please, fill the Password field
             </md-hint>
         </md-input-container>
