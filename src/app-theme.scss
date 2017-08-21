@@ -20,6 +20,6 @@ $green-theme: mat-light-theme($primary, $accent, $warn);
 /*
 * Global themed style
 */
-a{
+a, b, h1{
 	color: mat-color($primary);
 }

@@ -1,16 +1,9 @@
-.main-content{
-    display: inline-block; // fixes H1 top margin colapse problem http://reference.sitepoint.com/css/collapsingmargins
-    width: 100%;
+.main-content, .main-toolbar{
+    min-width: 320px;
 }
 
-.toolbar-spacer{
-  flex: 1 1 auto;
-}
-
-.toolbar-icon {
-  padding: 0 14px;
-}
-
-a{
-	color: #fff;
+.main-toolbar{
+    a{
+    	color: #fff;
+    }
 }

@@ -1,10 +1,19 @@
 <div class="wide-central-shape">
-	<h1>
-		<a md-fab color="primary" type="button" routerLink="/user/insert">
-			<md-icon class="example-icon">add</md-icon>
+	<div class="wide-central-title">
+		<a md-mini-fab color="primary" routerLink="/user/insert">
+			<md-icon>add</md-icon>
 		</a>
-		Users
-	</h1>
+		<span class="flex-spacer"></span>
+		<h1>Users</h1>
+		<span class="flex-spacer"></span>
+		<button md-mini-fab color="default" type="button" (click)="toggleFilter()">
+			<md-icon>search</md-icon>
+		</button>
+	</div>
+
+	<div *ngIf="showFilter">
+		Filter
+	</div>
 
 	<hr />
 

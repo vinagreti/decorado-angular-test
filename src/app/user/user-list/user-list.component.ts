@@ -9,8 +9,14 @@ import { User } from './../user.model';
 })
 export class UserListComponent {
 
+    showFilter: boolean;
+
     constructor(
         private userService: UserService
     ) {}
+
+    toggleFilter = () => {
+        this.showFilter = !this.showFilter;
+    }
 
 }

@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Components
 import { UserLoginComponent } from './user-login/user-login.component';
-import { UserLogoutComponent } from './user-logout/user-logout.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserInsertComponent } from './user-insert/user-insert.component';
@@ -13,7 +12,6 @@ import { AdminGuardService, LoggedGuardService, PublicGuardService } from './../
 
 export const appRoutes: Routes = [
     { path: 'login', component: UserLoginComponent, canActivate: [PublicGuardService] },
-    { path: 'logout', component: UserLogoutComponent },
     { path: 'insert', component: UserInsertComponent, canActivate: [AdminGuardService] },
     { path: ':id', component: UserEditComponent, canActivate: [AdminGuardService] },
     { path: '', component: UserListComponent, canActivate: [LoggedGuardService] },

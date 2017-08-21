@@ -16,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 import { User } from './user.model';
-import { ConfirmationDialogService } from './../shared/helpers/confirmation-dialog/';
+import { ConfirmationDialogService } from './../shared/services/confirmation-dialog/';
 import { JsonStorageService } from './../json-storage'
 
 const defaultAdminUser = new User({ id: '1', name: 'Admin', isAdmin: true, username: 'admin', password: 123 });
@@ -84,6 +84,10 @@ export class UserService {
     private persistUsers = (users: User[]) => {
         this._users = users;
         this.jsonStorageService.set('usersDB', users);
+
+        if(this.isLoggedIn()){
+            this.user.next(this.get(this._user.id));
+        }
     }
 
     private persistUser = (user: User) => {

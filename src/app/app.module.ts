@@ -17,7 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './user';
 
 // Globla Modules
-import { ConfirmationDialogModule } from './shared/helpers/confirmation-dialog';
+import { ConfirmationDialogModule } from './shared/services/confirmation-dialog';
 import { GuardModule } from './shared/guard';
 import { JsonStorageModule } from './json-storage/json-storage.module';
 
