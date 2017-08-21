@@ -6,7 +6,7 @@
     <ng-template #loggedBlock>
         <p>
             You are logged in as <b>{{ userService.user.pluck("name") | async }}</b>
-            with <b>{{ (userService.user.pluck("isAdmin") | async) ? 'Admin' : 'User' }} privileges</b>.
+            with <b>{{ (userService.user.pluck('isAdmin') | async) ? 'Admin' : 'User' }} privileges</b>.
         </p>
         <p>
             Go to your <a routerLink="/user">Users Manager</a>
