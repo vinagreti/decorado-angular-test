@@ -27,7 +27,7 @@ interface LoginData{
 }
 
 @Injectable()
-export class UserService {
+export class UserBackendService {
 
     private _users: User[];
     private _user:  User;
@@ -40,7 +40,7 @@ export class UserService {
         private jsonStorageService: JsonStorageService,
         private router: Router,
     ) {
-        console.info('UserService started');
+        console.info('UserBackendService started');
 
         this.getUsersFromDb()
         .then(this.startUsers)
@@ -87,7 +87,7 @@ export class UserService {
         this._users = users;
         this.jsonStorageService.set('usersDB', users);
 
-        if(this.isLoggedIn()){ // Updates the loogged user data
+        if(this.isLoggedIn()){
             this.user.next(this.get(this._user.id));
         }
     }
@@ -121,16 +121,8 @@ export class UserService {
             this.getUsersFromDb()
             .then((users) => {
                 if(JSON.stringify(users) != JSON.stringify(this._users)){
-                    console.log("watchLocalStorage Users timeout mudou")
+                    console.log("watchLocalStorage timeout mudou")
                     this.users.next(users);
-                }
-            });
-
-            this.getUserFromDb()
-            .then((user) => {
-                if(JSON.stringify(user) != JSON.stringify(this._user)){
-                    console.log("watchLocalStorage User timeout mudou")
-                    this.user.next(user);
                 }
             });
         }, 1000)
@@ -140,27 +132,23 @@ export class UserService {
     * CRUD OPERATIONS
     */
     create = (user: User): User => {
-        if(this.isAdmin()){ // Only ADMIN can create
-            user.id = Date.now();
-            this._users.push(user)
-            this.users.next(this._users);
-            return user;
-        }
+        user.id = Date.now();
+        this._users.push(user)
+        this.users.next(this._users);
+        return user;
     }
 
     delete = (user: User) => {
-        if(this.isAdmin()){ // Only ADMIN can delete
-            this.confirmationDialogService
-            .confirm(`Remove user ${user.name}?`)
-            .then((confirmed) => {
-                if(confirmed){
-                    let userPosition = this._users.indexOf(user);
-                    this._users.splice(userPosition, 1);
-                    this.users.next(this._users);
-                    this.router.navigate(['/user']);
-                }
-            });
-        }
+        this.confirmationDialogService
+        .confirm(`Remove user ${user.name}?`)
+        .then((confirmed) => {
+            if(confirmed){
+                let userPosition = this._users.indexOf(user);
+                this._users.splice(userPosition, 1);
+                this.users.next(this._users);
+                this.router.navigate(['/user']);
+            }
+        });
     }
 
     get = (id): User => {
@@ -172,32 +160,26 @@ export class UserService {
     }
 
     save = (user: User): User => {
-        if(this.isAdmin()){ // Only ADMIN can save
-            if(user.id){
-                return this.update(user);
-            } else {
-                return this.create(user);
-            }
+        if(user.id){
+            return this.update(user);
+        } else {
+            return this.create(user);
         }
     }
 
     update = (user: User): User => {
-        if(this.isAdmin()){ // Only ADMIN can update
-            let _user = this.get(user.id);
-            _user.name = user.name;
-            _user.isAdmin = user.isAdmin;
-            this.users.next(this._users);
-            return _user;
-        }
+        let _user = this.get(user.id);
+        _user.name = user.name;
+        _user.isAdmin = user.isAdmin;
+        this.users.next(this._users);
+        return _user;
     }
 
     toggleAdmin = (user: User): User => {
-        if(this.isAdmin()){ // Only ADMIN can toggleAdmin
-            let _user = this.get(user.id);
-            _user.isAdmin = !user.isAdmin;
-            this.users.next(this._users);
-            return _user;
-        }
+        let _user = this.get(user.id);
+        _user.isAdmin = !user.isAdmin;
+        this.users.next(this._users);
+        return _user;
     }
 
     /*
@@ -224,11 +206,11 @@ export class UserService {
     /*
     * HELPERS
     */
-    isLoggedIn = (): boolean => {
-        return this._user && this._user.id ? true : false;
+    isLoggedIn = () => {
+        return this._user && this._user.id;
     }
 
-    isAdmin = () => {
-        return this._user.isAdmin;
+    userLevel = () => {
+        return 'admin';
     }
 }
