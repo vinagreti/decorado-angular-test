@@ -14,7 +14,7 @@ export class UserListComponent {
     @ViewChild('searchStringField') searchStringField: ElementRef;
 
     constructor(
-        private userService: UserService
+        public userService: UserService
     ) {}
 
     toggleFilter = () => {

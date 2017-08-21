@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import  { User, UserService } from './../';
+import { User, UserService } from './../';
 
 @Component({
   selector: 'app-user-edit',
@@ -29,7 +29,7 @@ export class UserEditComponent implements OnInit {
       this.user = this.userService.get(id);
   }
 
-  onSave(user){
+  onSave(){
       this.router.navigate(['user'])
   }
 

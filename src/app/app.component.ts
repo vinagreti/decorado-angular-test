@@ -7,12 +7,13 @@ import { UserService } from './user/user.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+
+  title = 'UsersApp';
 
   constructor(
     public userService: UserService
   ){
-    console.info('App started');
+    console.info('App STARTED');
   }
 
   ngOnInit(){

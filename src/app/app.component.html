@@ -1,5 +1,5 @@
 <md-toolbar color="primary" class="main-toolbar">
-  <a routerLink="/">UsersApp</a>
+  <a routerLink="/" class="tootlbar-title">{{title}}</a>
   <span class="flex-spacer"></span>
   <button md-button *ngIf="(userService.user?.pluck('id') | async)" type="button" routerLink="/user">Users</button>
   <button md-button *ngIf="!(userService.user?.pluck('id') | async)" type="button" routerLink="/user/login">Sign in</button>

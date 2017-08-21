@@ -40,7 +40,7 @@ export class UserService {
         private jsonStorageService: JsonStorageService,
         private router: Router,
     ) {
-        console.info('UserService started');
+        console.info('UserService STARTED');
 
         this.getUsersFromDb()
         .then(this.startUsers)
@@ -188,12 +188,18 @@ export class UserService {
         }
     }
 
-    toggleAdmin = (user: User): User => {
+    toggleAdmin = (user: User) => {
         if(this.isAdmin()){ // Only ADMIN can toggleAdmin
-            let _user = this.get(user.id);
-            _user.isAdmin = !user.isAdmin;
-            this.users.next(this._users);
-            return _user;
+            this.confirmationDialogService
+            .confirm(`${user.isAdmin ? 'Remove' : 'Add'} admin privileges ${user.isAdmin ? 'from' : 'to'} user ${user.name}?`)
+            .then((confirmed) => {
+                if(confirmed){
+                    let _user = this.get(user.id);
+                    _user.isAdmin = !user.isAdmin;
+                    this.users.next(this._users);
+                    return _user;
+                }
+            });
         }
     }
 

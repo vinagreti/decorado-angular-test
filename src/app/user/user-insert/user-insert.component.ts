@@ -19,7 +19,7 @@ export class UserInsertComponent implements OnInit {
     ngOnInit() {
     }
 
-    onSave(user){
+    onSave(){
         this.router.navigate(['user'])
     }
 }
