@@ -10,6 +10,7 @@ import { User } from './../user.model';
 export class UserListComponent {
 
     showFilter: boolean;
+    searchString: string;
     @ViewChild('searchStringField') searchStringField: ElementRef;
 
     constructor(
@@ -17,13 +18,15 @@ export class UserListComponent {
     ) {}
 
     toggleFilter = () => {
-        this.showFilter = !this.showFilter;
+        if(!this.searchString){
+            this.showFilter = !this.showFilter;
 
-        setTimeout(() => {
-            if(this.showFilter){
-                this.searchStringField.nativeElement.focus();
-            }
-        }, 1)
+            setTimeout(() => {
+                if(this.showFilter){
+                    this.searchStringField.nativeElement.focus();
+                }
+            }, 1)
+        }
     }
 
 }
