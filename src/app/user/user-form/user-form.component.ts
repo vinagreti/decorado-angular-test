@@ -62,7 +62,7 @@ export class UserFormComponent implements OnInit {
 
             let userWithSameUsername = this.userService.getByUsername(user.username);
 
-            if(userWithSameUsername){
+            if(userWithSameUsername && userWithSameUsername.id != user.id){
                 return this.userForm.controls.username.setErrors({notUnique: true});
             }
 

@@ -3,7 +3,7 @@
 		<a md-fab color="primary" type="button" routerLink="/user">
 			<md-icon class="example-icon">keyboard_return</md-icon>
 		</a>
-		Edit user
+		Edit user '{{user.username}}'
 	</h1>
 
     <user-form [user]="user" (insert)="onSave()"></user-form>
