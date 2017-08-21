@@ -12,6 +12,7 @@ import { UserLogoutComponent } from './user-logout/user-logout.component';
 import { UserRoutingModule } from './user-routing.module';
 import { UserCardComponent } from './user-card/user-card.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { ValidatorModule } from './../shared/services/validator';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { UserFormComponent } from './user-form/user-form.component';
         MdIconModule,
         MdInputModule,
         ReactiveFormsModule,
-        UserRoutingModule
+        UserRoutingModule,
+        ValidatorModule
     ],
     declarations: [
         UserLoginComponent,

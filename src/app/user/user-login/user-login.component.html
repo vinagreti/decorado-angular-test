@@ -5,13 +5,21 @@
 
         <md-input-container>
             <input mdInput type="text" name="username" formControlName="username" placeholder="username" />
+            <md-hint *ngIf="loginForm.controls.username.touched && loginForm.controls.username.errors">
+                    Please fill the Username field
+            </md-hint>
         </md-input-container>
 
         <md-input-container>
             <input mdInput type="password" name="password" formControlName="password" placeholder="password" />
+            <md-hint *ngIf="loginForm.controls.username.touched && loginForm.controls.username.errors">
+                    Please fill the Password field
+            </md-hint>
         </md-input-container>
 
-        <button md-raised-button type="submit" color="primary">Sign-in</button>
+        <p>
+            <button md-raised-button type="submit" color="primary" [disabled]="!loginForm.valid">Sign-in</button>
+        </p>
 
     </form>
 </div>

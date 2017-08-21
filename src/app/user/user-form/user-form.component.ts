@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { UserService } from './../user.service';
 import { User } from './../user.model';
+import { ValidatorService } from './../../shared/services/validator';
 
 @Component({
     selector: 'user-form',
@@ -21,7 +22,8 @@ export class UserFormComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private formBuilder: FormBuilder,
-        private userService: UserService
+        private userService: UserService,
+        private validatorService: ValidatorService
     ) {
         this.insert = new EventEmitter<User>();
     }
@@ -35,12 +37,16 @@ export class UserFormComponent implements OnInit {
         this.user = this.user ? this.user : new User();
     }
 
-
     private startUserForm(){
         this.userForm = this.formBuilder.group({
             name: [this.user.name, [Validators.required]],
-            username: [this.user.username, []],
-            password: [this.user.password, []],
+            showPassword: [false],
+            username: [this.user.username, Validators.compose([
+                this.validatorService.requiredIf(!this.user.id)
+            ])],
+            password: [this.user.password, Validators.compose([
+                this.validatorService.requiredIf(!this.user.id)
+            ])],
             isAdmin: [this.user.isAdmin, [Validators.required]],
         });
     }
