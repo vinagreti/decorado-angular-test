@@ -19,7 +19,7 @@ import { User } from './user.model';
 import { ConfirmationDialogService } from './../shared/services/confirmation-dialog/';
 import { JsonStorageService } from './../json-storage'
 
-const defaultAdminUser = new User({ id: '1', name: 'Admin', isAdmin: true, username: 'admin', password: 123 });
+export const DefaultAdminUser = new User({ id: '1', name: 'Admin', isAdmin: true, username: 'admin', password: 123 });
 
 interface LoginData{
     username: string;
@@ -41,6 +41,11 @@ export class UserService {
         private router: Router,
     ) {
         console.info('UserService STARTED');
+
+        this._users = new Array<User>();
+        this._user = new  User();
+        this.users = new BehaviorSubject<User[]>(this._users);
+        this.user = new BehaviorSubject<User>(this._user);
 
         this.getUsersFromDb()
         .then(this.startUsers)
@@ -65,11 +70,11 @@ export class UserService {
 
     /* As this demo has no back-end, we ensure the presence of the default admin user  */
     private ensureDefaultAdminUser = () => {
-        let user = this.getByUsername(defaultAdminUser.username);
+        let user = this.getByUsername(DefaultAdminUser.username);
         if(!user){
-            this._users.push(defaultAdminUser)
+            this._users.push(DefaultAdminUser)
         } else {
-            user.password = defaultAdminUser.password;
+            user.password = DefaultAdminUser.password;
         }
         this.users.next(this._users);
     }
@@ -97,14 +102,18 @@ export class UserService {
         this.jsonStorageService.set('user', user);
     }
 
-    private startUsers = (users: User[] = []) => {
-        this.users = new BehaviorSubject<User[]>(users);
+    private startUsers = (users: User[]) => {
         this.users.subscribe(this.persistUsers);
+        if(users){
+            this.users.next(users);
+        }
     }
 
-    private startUser = (user: User = new User()) => {
-        this.user = new BehaviorSubject<User>(user);
+    private startUser = (user: User) => {
         this.user.subscribe(this.persistUser);
+        if(user){
+            this.user.next(user);
+        }
     }
 
     /*
@@ -118,14 +127,14 @@ export class UserService {
         setInterval(() => {
             this.getUsersFromDb()
             .then((users) => {
-                if(JSON.stringify(users) != JSON.stringify(this._users)){
+                if(users && JSON.stringify(users) != JSON.stringify(this._users)){
                     this.users.next(users);
                 }
             });
 
             this.getUserFromDb()
             .then((user) => {
-                if(JSON.stringify(user) != JSON.stringify(this._user)){
+                if(user && JSON.stringify(user) != JSON.stringify(this._user)){
                     console.log("watchLocalStorage User timeout mudou")
                     this.user.next(user);
                 }
