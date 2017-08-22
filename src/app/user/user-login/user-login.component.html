@@ -5,14 +5,17 @@
 
         <md-input-container>
             <input mdInput type="text" name="username" formControlName="username" placeholder="username" />
-            <md-hint *ngIf="loginForm.controls.username.touched && loginForm.controls.username.errors">
+            <md-hint *ngIf="loginForm.controls.username.touched && loginForm.controls.username.errors?.notMatch">
+                    User and password not match
+            </md-hint>
+            <md-hint *ngIf="loginForm.controls.username.touched && loginForm.controls.username.errors?.required">
                     Please fill the Username field
             </md-hint>
         </md-input-container>
 
         <md-input-container>
             <input mdInput type="password" name="password" formControlName="password" placeholder="password" />
-            <md-hint *ngIf="loginForm.controls.username.touched && loginForm.controls.username.errors">
+            <md-hint *ngIf="loginForm.controls.username.touched && loginForm.controls.username.errors?.reuired">
                     Please fill the Password field
             </md-hint>
         </md-input-container>

@@ -50,7 +50,7 @@ export class UserLoginComponent implements OnInit {
                         this.router.navigate(['/']);
                     }
                 }, (err) => {
-                    console.log("Não logou com o erro: ", err);
+                    this.loginForm.controls.username.setErrors({notMatch: true});
                 }
             );
         }
