@@ -18,7 +18,7 @@ Then run `http-server-spa ./` inside the `docs/` folder. Navigate to `http://127
 
 ## Demo server
 
-Navigate to `https://vinagreti.github.io/decorado-angular-test`.
+Navigate to [this github page](https://vinagreti.github.io/decorado-angular-test) to play with the [demo](https://vinagreti.github.io/decorado-angular-test).
 
 User: admin
 Password: 123
