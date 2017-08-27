@@ -20,6 +20,9 @@ Then run `http-server-spa ./` inside the `docs/` folder. Navigate to `http://127
 
 Navigate to `https://vinagreti.github.io/decorado-angular-test`.
 
+User: admin
+Password: 123
+
 ## Deploy server
 
 Place the content of the `docs/` folder inside the root of you server where your doming is pointing to. Navigate to your domain.
